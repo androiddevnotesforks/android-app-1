@@ -1,10 +1,10 @@
 package com.kelsos.mbrc.content.library.covers
 
 import android.app.Application
-import com.kelsos.mbrc.constants.Protocol
 import com.kelsos.mbrc.content.library.albums.AlbumRepository
 import com.kelsos.mbrc.di.modules.AppDispatchers
 import com.kelsos.mbrc.networking.ApiBase
+import com.kelsos.mbrc.networking.protocol.Protocol
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.withContext
