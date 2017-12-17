@@ -32,16 +32,7 @@ constructor(
   }
 
   suspend fun cache() {
-    val map = withContext(dispatchers.db) {
-      albumRepository.getAllCursor()
-        .map {
-          AlbumCover(
-            artist = it.artist ?: "",
-            album = it.album ?: "",
-            hash = it.cover ?: ""
-          )
-        }
-    }
+    val map = withContext(dispatchers.db) { albumRepository.getCovers() }
     withContext(dispatchers.io) {
       val updated = mutableListOf<AlbumCover>()
       api.getAll(Protocol.LibraryCover, map, Cover::class).onCompletion {
