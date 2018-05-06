@@ -2,9 +2,9 @@ package com.kelsos.mbrc.content.library.covers
 
 import android.app.Application
 import com.kelsos.mbrc.content.library.albums.AlbumRepository
-import com.kelsos.mbrc.di.modules.AppDispatchers
 import com.kelsos.mbrc.networking.ApiBase
 import com.kelsos.mbrc.networking.protocol.Protocol
+import com.kelsos.mbrc.utilities.AppCoroutineDispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.withContext
@@ -20,7 +20,7 @@ class CoverCache
 constructor(
   private val albumRepository: AlbumRepository,
   private val api: ApiBase,
-  private val dispatchers: AppDispatchers,
+  private val dispatchers: AppCoroutineDispatchers,
   app: Application
 ) {
 
@@ -32,8 +32,8 @@ constructor(
   }
 
   suspend fun cache() {
-    val map = withContext(dispatchers.db) { albumRepository.getCovers() }
-    withContext(dispatchers.io) {
+    val map = withContext(dispatchers.database) { albumRepository.getCovers() }
+    withContext(dispatchers.network) {
       val updated = mutableListOf<AlbumCover>()
       api.getAll(Protocol.LibraryCover, map, Cover::class).onCompletion {
         Timber.v("Updated ${updated.size} albums")
