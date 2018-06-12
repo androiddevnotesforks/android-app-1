@@ -39,15 +39,17 @@ constructor(
         Timber.v("Updated ${updated.size} albums")
         albumRepository.updateCovers(updated)
       }.collect { (payload, response) ->
-        val coverExists = !response.cover.isNullOrEmpty()
-        if (response.status == 200 && coverExists && !response.hash.isNullOrEmpty()) {
+        val status = response.status
+        val cover = response.cover
+        val hash = response.hash
+        if (status == 200 && !cover.isNullOrEmpty() && !hash.isNullOrEmpty()) {
           try {
             val file = File(cache, payload.key())
-            val decodeBase64 = response.cover?.decodeBase64()
+            val decodeBase64 = cover.decodeBase64()
             if (decodeBase64 != null) {
               file.sink().buffer().use { sink -> sink.write(decodeBase64) }
             }
-            updated.add(payload.copy(hash = response.hash))
+            updated.add(payload.copy(hash = hash))
           } catch (e: Exception) {
             Timber.e(e)
           }
