@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kelsos.mbrc.R
-import com.kelsos.mbrc.content.activestatus.TrackRating
 import com.kelsos.mbrc.databinding.DialogRatingBinding
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RatingDialogFragment : DialogFragment(), RatingDialogView {
+class RatingDialogFragment : DialogFragment() {
 
   private var _binding: DialogRatingBinding? = null
   private val binding get() = _binding!!
 
-  private val presenter: RatingDialogPresenter by inject()
+  private val viewModel: RatingDialogViewModel by viewModel()
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     _binding = DialogRatingBinding.inflate(LayoutInflater.from(requireContext()))
@@ -25,19 +24,18 @@ class RatingDialogFragment : DialogFragment(), RatingDialogView {
       .show()
 
     binding.ratingBar.setOnRatingBarChangeListener { rating ->
-      presenter.changeRating(rating)
+      viewModel.changeRating(rating)
     }
 
-    presenter.loadRating()
+    viewModel.trackRatingLiveDataProvider.observe(viewLifecycleOwner) {
+      binding.ratingBar.rating = it.rating
+    }
+    viewModel.loadRating()
     return dialog
   }
 
   override fun onDestroyView() {
     super.onDestroyView()
     _binding = null
-  }
-
-  override fun updateRating(rating: TrackRating) {
-    binding.ratingBar.rating = rating.rating
   }
 }
