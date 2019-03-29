@@ -72,8 +72,8 @@ import com.kelsos.mbrc.networking.protocol.CommandExecutor
 import com.kelsos.mbrc.networking.protocol.CommandExecutorImpl
 import com.kelsos.mbrc.networking.protocol.CommandFactory
 import com.kelsos.mbrc.networking.protocol.CommandFactoryImpl
-import com.kelsos.mbrc.networking.protocol.VolumeInteractor
-import com.kelsos.mbrc.networking.protocol.VolumeInteractorImpl
+import com.kelsos.mbrc.networking.protocol.VolumeModifyUseCase
+import com.kelsos.mbrc.networking.protocol.VolumeModifyUseCaseImpl
 import com.kelsos.mbrc.networking.protocol.commands.ProtocolPingHandle
 import com.kelsos.mbrc.networking.protocol.commands.ProtocolPongHandle
 import com.kelsos.mbrc.networking.protocol.commands.UpdateCover
@@ -165,7 +165,7 @@ val appModule = module {
 
   singleBy<RadioRepository, RadioRepositoryImpl>()
   singleBy<ClientInformationStore, ClientInformationStoreImpl>()
-  singleBy<VolumeInteractor, VolumeInteractorImpl>()
+  singleBy<VolumeModifyUseCase, VolumeModifyUseCaseImpl>()
   singleBy<OutputApi, OutputApiImpl>()
 
   singleBy<PlayingTrackLiveDataProvider, PlayingTrackLiveDataProviderImpl>()
