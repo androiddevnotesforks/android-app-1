@@ -29,8 +29,6 @@ import com.kelsos.mbrc.content.nowplaying.NowPlayingRepository
 import com.kelsos.mbrc.content.nowplaying.NowPlayingRepositoryImpl
 import com.kelsos.mbrc.content.nowplaying.cover.CoverModel
 import com.kelsos.mbrc.content.nowplaying.cover.StoredCoverModel
-import com.kelsos.mbrc.content.playlists.PlaylistRepository
-import com.kelsos.mbrc.content.playlists.PlaylistRepositoryImpl
 import com.kelsos.mbrc.content.sync.LibrarySyncUseCase
 import com.kelsos.mbrc.content.sync.LibrarySyncUseCaseImpl
 import com.kelsos.mbrc.core.IRemoteServiceCore
@@ -44,6 +42,9 @@ import com.kelsos.mbrc.data.SerializationAdapter
 import com.kelsos.mbrc.data.SerializationAdapterImpl
 import com.kelsos.mbrc.features.output.OutputApi
 import com.kelsos.mbrc.features.output.OutputApiImpl
+import com.kelsos.mbrc.features.playlists.presentation.PlaylistAdapter
+import com.kelsos.mbrc.features.playlists.repository.PlaylistRepository
+import com.kelsos.mbrc.features.playlists.repository.PlaylistRepositoryImpl
 import com.kelsos.mbrc.features.radio.presentation.RadioAdapter
 import com.kelsos.mbrc.features.radio.presentation.RadioViewModel
 import com.kelsos.mbrc.features.radio.repository.RadioRepository
@@ -126,7 +127,6 @@ import com.kelsos.mbrc.ui.navigation.nowplaying.MoveManagerImpl
 import com.kelsos.mbrc.ui.navigation.nowplaying.NowPlayingViewModel
 import com.kelsos.mbrc.ui.navigation.player.PlayerViewModel
 import com.kelsos.mbrc.ui.navigation.player.VolumeDialogViewModel
-import com.kelsos.mbrc.ui.navigation.playlists.PlaylistAdapter
 import com.kelsos.mbrc.utilities.AppCoroutineDispatchers
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
