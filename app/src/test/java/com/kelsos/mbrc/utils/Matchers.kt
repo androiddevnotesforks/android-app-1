@@ -3,6 +3,7 @@ package com.kelsos.mbrc.utils
 import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.Visibility
@@ -30,4 +31,8 @@ fun ViewInteraction.isVisible() {
 
 fun ViewInteraction.isGone() {
   check(matches(withEffectiveVisibility(Visibility.GONE)))
+}
+
+fun ViewInteraction.doesNotExist() {
+  check(ViewAssertions.doesNotExist())
 }
