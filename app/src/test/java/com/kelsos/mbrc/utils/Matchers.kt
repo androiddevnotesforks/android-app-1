@@ -2,10 +2,13 @@ package com.kelsos.mbrc.utils
 
 import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.Visibility
 import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import org.hamcrest.Description
@@ -35,4 +38,17 @@ fun ViewInteraction.isGone() {
 
 fun ViewInteraction.doesNotExist() {
   check(ViewAssertions.doesNotExist())
+}
+
+/**
+ * Click action that ignores visibility of item to avoid robolectric limitations
+ */
+object Click : ViewAction {
+  override fun getConstraints(): Matcher<View> = ViewMatchers.isEnabled()
+
+  override fun getDescription(): String = "Click"
+
+  override fun perform(uiController: UiController?, view: View?) {
+    view?.performClick()
+  }
 }
