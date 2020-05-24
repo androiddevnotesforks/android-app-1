@@ -68,10 +68,6 @@
         <action android:name="com.kelsos.mbrc.notification.previous" />
       </intent-filter>
     </service>
-
-    <service
-        android:name=".platform.LibrarySyncService"
-        android:exported="false" />
   </application>
 
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
