@@ -10,7 +10,6 @@ import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
-
 object LogHelper {
 
   fun logsExist(context: Context): Single<Boolean> {
@@ -73,7 +72,6 @@ object LogHelper {
         fos.close()
 
         return@fromCallable zipFile
-
       } catch (e: IOException) {
         throw RuntimeException(e)
       }
@@ -81,5 +79,4 @@ object LogHelper {
   }
 
   const val LOG_ZIP = "mbrc_logs.zip"
-
 }

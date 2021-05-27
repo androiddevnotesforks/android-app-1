@@ -47,7 +47,6 @@ class FeedbackFragment : Fragment() {
       .subscribe({
         logInfo.isEnabled = true
       }) {
-
       }
     return view
   }
