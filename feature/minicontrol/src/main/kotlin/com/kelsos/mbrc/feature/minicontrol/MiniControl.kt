@@ -1,6 +1,5 @@
 package com.kelsos.mbrc.feature.minicontrol
 
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
@@ -38,6 +37,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,6 +45,7 @@ import coil3.compose.AsyncImage
 import com.kelsos.mbrc.core.common.state.PlayerState
 import com.kelsos.mbrc.core.ui.R as CoreUiR
 import com.kelsos.mbrc.core.ui.compose.WaveProgressIndicator
+import com.kelsos.mbrc.core.ui.compose.trackTextMarquee
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -155,7 +156,8 @@ fun MiniControlContent(
             color = MaterialTheme.colorScheme.onSurface,
             maxLines = 1,
             softWrap = false,
-            modifier = Modifier.basicMarquee()
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.trackTextMarquee()
           )
           Text(
             text = state.playingTrack.artist.ifEmpty {
@@ -167,7 +169,8 @@ fun MiniControlContent(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             softWrap = false,
-            modifier = Modifier.basicMarquee()
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.trackTextMarquee()
           )
         }
 

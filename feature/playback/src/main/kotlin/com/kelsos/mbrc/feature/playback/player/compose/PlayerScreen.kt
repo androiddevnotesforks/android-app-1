@@ -10,7 +10,6 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -76,6 +75,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.palette.graphics.Palette
@@ -97,6 +97,7 @@ import com.kelsos.mbrc.core.ui.compose.DynamicScreenScaffold
 import com.kelsos.mbrc.core.ui.compose.ThinSlider
 import com.kelsos.mbrc.core.ui.compose.TopBarState
 import com.kelsos.mbrc.core.ui.compose.WaveProgressIndicator
+import com.kelsos.mbrc.core.ui.compose.trackTextMarquee
 import com.kelsos.mbrc.feature.misc.output.compose.OutputSelectionBottomSheet
 import com.kelsos.mbrc.feature.playback.R
 import com.kelsos.mbrc.feature.playback.lyrics.LyricsViewModel
@@ -875,9 +876,10 @@ private fun TrackInfoWithFavorite(
         color = MaterialTheme.colorScheme.onSurface,
         maxLines = 1,
         softWrap = false,
+        overflow = TextOverflow.Ellipsis,
         modifier = Modifier
           .height(28.dp)
-          .basicMarquee()
+          .trackTextMarquee()
       )
 
       Spacer(modifier = Modifier.height(4.dp))
@@ -888,9 +890,10 @@ private fun TrackInfoWithFavorite(
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         maxLines = 1,
         softWrap = false,
+        overflow = TextOverflow.Ellipsis,
         modifier = Modifier
           .height(22.dp)
-          .basicMarquee()
+          .trackTextMarquee()
       )
 
       Spacer(modifier = Modifier.height(2.dp))
@@ -911,9 +914,10 @@ private fun TrackInfoWithFavorite(
         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
         maxLines = 1,
         softWrap = false,
+        overflow = TextOverflow.Ellipsis,
         modifier = Modifier
           .height(20.dp)
-          .basicMarquee()
+          .trackTextMarquee()
       )
     }
 
