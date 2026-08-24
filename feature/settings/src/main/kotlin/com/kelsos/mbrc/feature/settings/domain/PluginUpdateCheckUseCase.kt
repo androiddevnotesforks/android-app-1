@@ -129,7 +129,8 @@ class PluginUpdateCheckUseCaseImpl(
   }
 
   private fun String.toVersionArray(): IntArray {
-    val parts = split("\\.", limit = 3)
+    // String.split takes literal delimiters, not a regex: "\\." would never match a version.
+    val parts = split(".", limit = 3)
     val versionArray = IntArray(3)
     for (i in parts.indices) {
       versionArray[i] = parts[i].toIntOrNull() ?: 0
