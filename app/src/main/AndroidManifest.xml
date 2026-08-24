@@ -91,6 +91,10 @@
         android:resource="@xml/remote_widget_small" />
     </receiver>
 
+    <receiver
+      android:name="com.kelsos.mbrc.feature.widgets.glance.WidgetHealReceiver"
+      android:exported="false" />
+
     <service
       android:name=".service.RemoteService"
       android:description="@string/info_service_description"

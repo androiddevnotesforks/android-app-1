@@ -8,6 +8,7 @@ import coil3.request.crossfade
 import com.kelsos.mbrc.core.common.utilities.logging.CustomLoggingTree
 import com.kelsos.mbrc.core.data.migration.MigrationManager
 import com.kelsos.mbrc.feature.settings.theme.ThemeManager
+import com.kelsos.mbrc.feature.widgets.glance.WidgetTrampolineGuard
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -45,6 +46,7 @@ open class App : Application() {
       modules(appModules())
     }
     initializeTimber()
+    WidgetTrampolineGuard.install(this)
     themeManager.applyTheme()
     appScope.launch {
       migrationManager.runMigrations()
